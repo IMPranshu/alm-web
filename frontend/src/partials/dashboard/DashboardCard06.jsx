@@ -1,66 +1,76 @@
 import React from 'react';
-import DoughnutChart from '../../charts/DoughnutChart';
 
-// Import utilities
-import { tailwindConfig } from '../../utils/Utils';
+import {
+  Chart, Series, Legend, ValueAxis,
+} from 'devextreme-react/chart';
+import { Button } from 'devextreme-react/button';
+import service from '../../utils/data.js';
 
-function DashboardCard06() {
+const colors = ['#c7d2fd', '#6366ff'];
 
-  const chartData = {
-    labels: ['No Risk', 'Medium Risk', 'High Risk'],
-    datasets: [
-      {
-        label: 'Popluation',
-        data: [
-          35, 30, 35,
-        ],
-        backgroundColor: [
-          tailwindConfig().theme.colors.indigo[500],
-          tailwindConfig().theme.colors.blue[400],
-          tailwindConfig().theme.colors.indigo[800],
-        ],
-        hoverBackgroundColor: [
-          tailwindConfig().theme.colors.indigo[600],
-          tailwindConfig().theme.colors.blue[500],
-          tailwindConfig().theme.colors.indigo[900],
-        ],
-        hoverBorderColor: tailwindConfig().theme.colors.white,
-      },
-    ],
-  };
+class DashboardCard06 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFirstLevel: true,
+      data: service.filterData(''),
+    };
 
-  return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-slate-200">
-      <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Population</h2>
-      </header>
-      {/* Chart built with Chart.js 3 */}
-      {/* Change the height attribute to adjust the chart height */}
-      <DoughnutChart data={chartData} width={389} height={260} />
-    </div>
-  );
+    this.customizePoint = this.customizePoint.bind(this);
+    this.onPointClick = this.onPointClick.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
 
+  render() {
+    return (
+      <div className="flex flex-col col-span-full sm:col-span-12 xl:col-span-8 bg-white shadow-lg rounded-sm border border-slate-200">
+        <Chart
+          id="chart"
+          title="User Risk Profiles percentage"
+          customizePoint={this.customizePoint}
+          onPointClick={this.onPointClick}
+          className={this.state.isFirstLevel ? 'pointer-on-bars' : ''}
+          dataSource={this.state.data}
+        >
+          <Series type="bar" />
+          <ValueAxis showZero={true} />
+          <Legend visible={false} />
+        </Chart>
+        <Button className="font-medium text-indigo-500 hover:text-indigo-600"
+          visible={!this.state.isFirstLevel}
+          onClick={this.onButtonClick}
+        ><span className="hidden sm:inline"> -&gt;</span>Back
+          </Button>
+      </div>
+    );
+  }
 
-  // var data = {
-  //   datasets: [{
-  //     data: [300, 50, 100],
-  //     backgroundColor: [
-  //       "#F7464A",
-  //       "#46BFBD",
-  //       "#FDB45C"
-  //     ]
-  //   }],
-  //   labels: [
-  //     "Red",
-  //     "Green",
-  //     "Yellow"
-  //   ]
-  // };
+  customizePoint() {
+    return {
+      color: colors[Number(this.state.isFirstLevel)],
+      hoverStyle: !this.state.isFirstLevel ? {
+        hatching: 'none',
+      } : {},
+    };
+  }
 
+  onPointClick(e) {
+    if (this.state.isFirstLevel) {
+      this.setState({
+        isFirstLevel: false,
+        data: service.filterData(e.target.originalArgument),
+      });
+    }
+  }
 
-
-
-
+  onButtonClick() {
+    if (!this.state.isFirstLevel) {
+      this.setState({
+        isFirstLevel: true,
+        data: service.filterData(''),
+      });
+    }
+  }
 }
 
 export default DashboardCard06;
