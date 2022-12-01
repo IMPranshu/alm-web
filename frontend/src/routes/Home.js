@@ -9,47 +9,41 @@ import { ColumnChart } from "@gooddata/sdk-ui-charts";
 import { modifyMeasure, newPositiveAttributeFilter } from "@gooddata/sdk-model";
 import { AttributeFilter } from "@gooddata/sdk-ui-filters";
 
-function LoansBySegment() {
+const segmentFilter = newPositiveAttributeFilter(Md.PaymentPropensity, ["S1"]);
+
+function LoansBySegment(filter) {
   return (
     <div style={{ height: 400 }}>
       <InsightView
         insight={Md.Insights.LoansBySegment}
         showTitle={"Loans by segment"}
+        filters={[filter]}
       />
     </div>
   );
 }
 
-function SegmentVariables() {
+function SegmentVariables(filter) {
   return (
     <div style={{ height: 400 }}>
       <InsightView
         insight={Md.Insights.SegmentVariables}
         showTitle={"Segment Variables"}
+        filters={[filter]}
       />
     </div>
   );
 }
 
-const segmentFilter = newPositiveAttributeFilter(Md.PaymentPropensity, ["S1"]);
-
-function CustomChart() {
-  const loans = modifyMeasure(Md.TotalDelqLast6m.Avg, (m) =>
+function CustomChart(filter) {
+  const deliquencies = modifyMeasure(Md.TotalDelqLast6m.Avg, (m) =>
     m.title("Average Deliquencies")
   );
-  const [filter, setFilter] = useState(segmentFilter);
 
   return (
     <div style={{ height: 300 }}>
-      <AttributeFilter
-        filter={filter}
-        onApply={(updatedFilter) => {
-          console.log("Applying updated filter:", updatedFilter);
-          setFilter(updatedFilter);
-        }}
-      />
       <ColumnChart
-        measures={[loans]}
+        measures={[deliquencies]}
         viewBy={Md.PaymentPropensity}
         filters={[filter]}
       />
@@ -58,11 +52,20 @@ function CustomChart() {
 }
 
 const Home = () => {
+  const [filter, setFilter] = useState(segmentFilter);
+
   return (
     <Page>
-      <LoansBySegment />
-      <SegmentVariables />
-      <CustomChart />
+      <AttributeFilter
+        filter={filter}
+        onApply={(updatedFilter) => {
+          console.log("Applying updated filter:", updatedFilter);
+          setFilter(updatedFilter);
+        }}
+      />
+      <LoansBySegment filter={filter} />
+      <SegmentVariables filter={filter} />
+      <CustomChart filter={filter} />
     </Page>
   );
 };
