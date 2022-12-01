@@ -25,7 +25,7 @@
         "yup": "^0.32.9"
     },
     "scripts": {
-        "start": "cross-env HTTPS=true PORT=8443 GENERATE_SOURCEMAP=false react-scripts start",
+        "start": "cross-env HTTPS=false PORT=8443 GENERATE_SOURCEMAP=false react-scripts start",
         "build": "react-scripts build",
         "build-with-explicit-hostname": "cross-env REACT_APP_SET_HOSTNAME=true npm run build",
         "eject": "react-scripts eject",

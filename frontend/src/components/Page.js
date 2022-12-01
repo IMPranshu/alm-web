@@ -7,17 +7,24 @@ import Footer from "./Footer";
 
 import styles from "./Page.module.scss";
 
-const Page = ({ children, className = null, mainClassName = null, title = "GoodData App" }) => {
-    return (
-        <div className={cx(styles.Page, className)}>
-            <Helmet>
-                <title>{title}</title>
-            </Helmet>
-            <Header />
-            <main className={cx(styles.Main, mainClassName, "s-page")}>{children}</main>
-            <Footer />
-        </div>
-    );
+const Page = ({
+  children,
+  className = null,
+  mainClassName = null,
+  title = "ALM",
+}) => {
+  return (
+    <div className={cx(styles.Page, className)}>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      <Header />
+      <main className={cx(styles.Main, mainClassName, "s-page")}>
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 export default Page;
