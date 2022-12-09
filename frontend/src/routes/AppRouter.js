@@ -31,7 +31,7 @@ const AppRouter = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/logout" component={Logout} />
-          <RedirectIfNotLoggedIn />
+          {/* <RedirectIfNotLoggedIn /> */}
         </WorkspaceProvider>
       </Router>
     </div>

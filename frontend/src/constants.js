@@ -3,12 +3,12 @@ export const appName = "ALM";
 
 // The URL of analytical GoodData backend with workspaces, insights, metrics, attributes, datasets, and users
 // that will be available to the application.
-export const backend = "http://localhost:3000";
+export const backend = "https://gd.dasceq.link";
 
 // The ID of workspace that is selected by default in the optional workspace picker component (located in the web
 // application header). It is also a default setting for script that refreshes MD data used by the application.
 // MD script shows list of available workspaces on backend in the case when the value is not set to any ID.
-export const workspace = "ffcc467744ee4e0bbbd76ee24cd83946";
+export const workspace = "a73293efb49048b68cd7d30928afbd4b";
 
 // RegExp used by optional workspace picker component (located in the web application header) to filter out
 // workspaces that should not be rendered to the application user. Only the workspaces with title that match
