@@ -15,6 +15,23 @@ const Links = () => {
       >
         Home
       </NavLink>
+      <NavLink
+        to={"/segments"}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+        exact
+      >
+        Segment & Options
+      </NavLink>
+      <NavLink
+        to={"/strategies"}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+        exact
+      >
+        Strategies
+      </NavLink>
+
     </>
   );
 };

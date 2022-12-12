@@ -8,6 +8,9 @@ import Login from "./Login";
 import Logout from "./Logout";
 import Welcome from "./Welcome";
 import Home from "./Home";
+import Segments from "./Segments";
+import Strategies from "./Strategies";
+
 
 import styles from "./AppRouter.module.scss";
 
@@ -29,6 +32,8 @@ const AppRouter = () => {
         {/* WorkspaceProvider depends on Router so it must be nested */}
         <WorkspaceProvider>
           <Route exact path="/" component={Home} />
+          <Route exact path="/segments" component={Segments} />
+          <Route exact path="/strategies" component={Strategies} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/logout" component={Logout} />
           {/* <RedirectIfNotLoggedIn /> */}
