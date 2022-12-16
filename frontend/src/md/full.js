@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-/* THIS FILE WAS AUTO-GENERATED USING CATALOG EXPORTER; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2022-12-10T07:26:58.003Z; */
+/* THIS FILE WAS AUTO-GENERATED USING CATALOG EXPORTER; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2022-12-13T12:39:54.201Z; */
 // @ts-ignore ignore unused imports here if they happen (e.g. when there is no measure in the workspace)
 import { newAttribute, newMeasure, idRef } from "@gooddata/sdk-model";
 /**
@@ -10308,12 +10308,6 @@ export const Insights = {
    */
   SegmentView: "3f93a6b5-34fd-44ae-a78d-64cd4ab87c1a"
   /**
-   * Insight Title: pranshu-test-pivot
-   * Insight ID: bb3af492-ce34-4197-8323-457f1bbab8e8
-   */
-  ,
-  PranshuTestPivot: "bb3af492-ce34-4197-8323-457f1bbab8e8"
-  /**
    * Insight Title: Delinquent Accounts
    * Insight ID: 16c31615-eccc-46b8-8855-8948c2ba52f4
    */
@@ -10349,6 +10343,24 @@ export const Insights = {
    */
   ,
   LTVBacktest: "b973142d-bfde-4fa4-8d77-538d98756d54"
+  /**
+   * Insight Title: pivotview
+   * Insight ID: bb3af492-ce34-4197-8323-457f1bbab8e8
+   */
+  ,
+  Pivotview: "bb3af492-ce34-4197-8323-457f1bbab8e8"
+  /**
+   * Insight Title: loannum-segments-pivot
+   * Insight ID: 8dac5692-9a82-46df-aeb8-a43f1af17c74
+   */
+  ,
+  LoannumSegmentsPivot: "8dac5692-9a82-46df-aeb8-a43f1af17c74"
+  /**
+   * Insight Title: test-data
+   * Insight ID: ba47ba6f-88e8-4358-8563-9377a6d4b4b5
+   */
+  ,
+  TestData: "ba47ba6f-88e8-4358-8563-9377a6d4b4b5"
   /**
    * Insight Title: Downpayment
    * Insight ID: ab078f15-5fb6-40cc-8048-dc0b2981d680
