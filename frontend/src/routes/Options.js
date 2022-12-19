@@ -136,18 +136,18 @@ function SegmentthirdView() {
 function FirstOptionsView() {
 
     const [rowData] = useState([
-        {Segments: "Seg1", RiskAssociated: "High", Variable1 : "S1,S2&S3",Variable2:"Inst. > $500",'No of Loans': 2200},
-        {Segments: "Seg2", RiskAssociated: "Low", Variable1 : "S4&S5",Variable2:"Inst. < $500",'No of Loans': 40},
-        {Segments: "Seg3", RiskAssociated: "Medium", Variable1 : "S1,S2&S3",Variable2:"Inst. > $1000",'No of Loans': 110},
+        {Segments: "Seg1", RiskAssociated: "High", PropensityBins : "S1,S2&S3",InstallmentAmount:"Inst. > $500",'LoanCount': 2200},
+        {Segments: "Seg2", RiskAssociated: "Low", PropensityBins : "S4&S5",InstallmentAmount:"Inst. < $500",'LoanCount': 40},
+        {Segments: "Seg3", RiskAssociated: "Medium", PropensityBins : "S1,S2&S3",InstallmentAmount:"Inst. > $1000",'LoanCount': 110},
 
     ]);
 
     const [columnDefs] = useState([
         { field: 'Segments' },
         { field: 'RiskAssociated' },
-        { field: 'Variable1' },
-        { field: 'Variable2' },
-        { field: 'No of Loans' },
+        { field: 'PropensityBins' },
+        { field: 'InstallmentAmount' },
+        { field: 'LoanCount' },
     ])
 
     return (
@@ -164,21 +164,21 @@ function FirstOptionsView() {
 
         const [rowData] = useState([
 
-            {Segments: "Seg1", RiskAssociated: "High", Variable1 : "S4&S5",Variable2:"Inst. < $1000",'No of Loans': 330},
-            {Segments: "Seg2", RiskAssociated: "Medium", Variable1 : "S1,S2&S3",Variable2:"Inst. > $700",'No of Loans': 234},
-            {Segments: "Seg3", RiskAssociated: "Low", Variable1 : "S4&S5",Variable2:"Inst. < $500",'No of Loans': 556},
-            {Segments: "Seg4", RiskAssociated: "Medium", Variable1 : "S1,S2&S3",Variable2:"Inst. > $600",'No of Loans': 441},
-            {Segments: "Seg5", RiskAssociated: "No", Variable1 : "S4&S5",Variable2:"Inst. < $200",'No of Loans': 922},
-            {Segments: "Seg6", RiskAssociated: "High", Variable1 : "S1,S2&S3",Variable2:"Inst. > $1000",'No of Loans': 770},
+            {Segments: "Seg1", RiskAssociated: "High", PropensityBins : "S4&S5",InstallmentAmount:"Inst. < $1000",'LoanCount': 330},
+            {Segments: "Seg2", RiskAssociated: "Medium", PropensityBins : "S1,S2&S3",InstallmentAmount:"Inst. > $700",'LoanCount': 234},
+            {Segments: "Seg3", RiskAssociated: "Low", PropensityBins : "S4&S5",InstallmentAmount:"Inst. < $500",'LoanCount': 556},
+            {Segments: "Seg4", RiskAssociated: "Medium", PropensityBins : "S1,S2&S3",InstallmentAmount:"Inst. > $600",'LoanCount': 441},
+            {Segments: "Seg5", RiskAssociated: "No", PropensityBins : "S4&S5",InstallmentAmount:"Inst. < $200",'LoanCount': 922},
+            {Segments: "Seg6", RiskAssociated: "High", PropensityBins : "S1,S2&S3",InstallmentAmount:"Inst. > $1000",'LoanCount': 770},
 
         ]);
-    
+
         const [columnDefs] = useState([
             { field: 'Segments' },
             { field: 'RiskAssociated' },
-            { field: 'Variable1' },
-            { field: 'Variable2' },
-            { field: 'No of Loans' },
+            { field: 'PropensityBins' },
+            { field: 'InstallmentAmount' },
+            { field: 'LoanCount' },
         ])
     
         return (

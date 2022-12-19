@@ -13,6 +13,11 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
+import { DateRangePicker } from 'react-date-range';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { addDays } from 'date-fns';
+
 
 import * as Md from "../md/full";
 import Button from "../components/controls/Button";
@@ -191,6 +196,40 @@ function OptionsView() {
 
   }
 
+
+  function DateRange() {
+    const [state, setState] = useState({
+        selection: {
+          startDate: new Date(),
+          endDate: null,
+          key: 'selection'
+        },
+        compare: {
+          startDate: new Date(),
+          endDate: addDays(new Date(), 3),
+          key: 'compare'
+        }
+      });
+
+
+
+    return (
+        <DateRangePicker
+  onChange={item => setState({ ...state, ...item })}
+  months={1}
+  minDate={addDays(new Date(), -3000)}
+  maxDate={addDays(new Date(), 1000)}
+  direction="vertical"
+  scroll={{ enabled: true }}
+  ranges={[state.selection]}
+/>
+    );
+
+
+
+
+  }
+
   function SixMonthsBacktestView() {
 
     const [rowData] = useState([
@@ -241,6 +280,8 @@ const Backtest = () => {
 
       <h3>Current Analysis</h3>
       <OptionsView/>
+      <h3>Choose Date</h3>
+      <DateRange/>
       <h3>After 3 months</h3>
       <ThreeMonthsBacktestView />
 

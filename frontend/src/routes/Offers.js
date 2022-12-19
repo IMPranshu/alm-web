@@ -108,30 +108,31 @@ function BacktestInsightView() {
   );
 }
 
-function RedirectOfferScreen() {
-    useEffect(() => {
-      const timeout = setTimeout(() => {
-        // 👇️ redirects to an external URL
-        window.location.replace('https://gd.dasceq.link/');
-      }, 3000);
-
-      return () => clearTimeout(timeout);
-    }, []);
-
-    return <>Will redirect in 3 seconds...</>;
-  }
-
 
 
 const Offers = () => {
+
+  const [contact, setContact] = useState('');
+
+  const handleChange = event => {
+    setContact(event.target.value);
+
+    console.log('value is:', event.target.value);
+  };
 
   return (
     <Page>
 
       <h1>Offers</h1>
-      <a href="https://gd.dasceq.link/" target="_blank" rel="noopener noreferrer">
-  <Button>Send Offers</Button>
-</a>
+      <input
+        type="text"
+        id="message"
+        name="message"
+        onChange={handleChange}
+        value={contact}
+      />
+      <br/>
+  <Button><h3>Send Offers: {contact}</h3></Button>
 
 
 

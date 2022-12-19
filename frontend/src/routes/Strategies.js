@@ -8,6 +8,11 @@ import { PivotTable } from "@gooddata/sdk-ui-pivot";
 import { modifyMeasure, newNegativeAttributeFilter,newPositiveAttributeFilter } from "@gooddata/sdk-model";
 import { AttributeFilterButton } from "@gooddata/sdk-ui-filters";
 
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
 
 
 
@@ -19,115 +24,46 @@ import { NavLink } from "react-router-dom";
 const style = { height: 400 };
 
 
-function SegmentfirstView() {
-    const [scoreFilter, setScoreFilter] = useState(newPositiveAttributeFilter(Md.InternalscoreBins, { uris: ["801-900", "701-800"] }));
-    const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.Loanstartyear, { uris: ["2019"] }));
-    const [loantermFilter, setLoantermFilter] = useState(newPositiveAttributeFilter(Md.LoantermBins, { uris: ["0-70","71-80","81-90"] }));
-
-    // currentbalance, installment amount, loanterm, numberofaccounts, max dayspastdur6m,
-
-    function onDrillHandler(event) {
-        // handle drill
-    }
 
 
-  return (
-    <div className="s-attribute-filter">
-            <AttributeFilterButton filter={scoreFilter} onApply={setScoreFilter} />
-            <AttributeFilterButton filter={typeFilter} onApply={setTypeFilter} />
-            <AttributeFilterButton filter={loantermFilter} onApply={setLoantermFilter} />
 
-    <div style={style}>
-    <PivotTable
-        rows={[Md.Loannum_1,
-            Md.Custinternalunderwritingscore_1,
-            Md.Loanterm,
-            Md.MaxDpdLast6m,
-            Md.TotalDelqLast6m,
-            Md.LoanStartMonthYear
-        ]}
-        onDrill={onDrillHandler}
-        filters={scoreFilter ? [scoreFilter,typeFilter,loantermFilter] : []}
-    />
-</div>
-</div>
 
-  );
+
+function Strategy() {
+
+    const [rowData] = useState([
+        {Segments: "Option 1 Seg 1", 'SelectSegments?': "Yes", 'GiveOffers?' : "Extension 6M",'LoanCount': 2200},
+        {Segments: "Option 1 Seg 2", 'SelectSegments?': "No", 'GiveOffers?' : "No Action",'LoanCount': 40},
+        {Segments: "Option 1 Seg 3", 'SelectSegments?': "Yes", 'GiveOffers?' : "Lower Installment",'LoanCount': 110},
+        {Segments: "Option 2 Seg 1", 'SelectSegments?': "Yes", 'GiveOffers?' : "Restructuring",'LoanCount': 330},
+        {Segments: "Option 2 Seg 2", 'SelectSegments?': "Yes", 'GiveOffers?' : "Extension 6M",'LoanCount': 234},
+        {Segments: "Option 2 Seg 3", 'SelectSegments?': "No", 'GiveOffers?' : "No Action",'LoanCount': 556},
+        {Segments: "Option 2 Seg 4", 'SelectSegments?': "Yes", 'GiveOffers?' : "Extension 6M",'LoanCount': 441},
+        {Segments: "Option 2 Seg 5", 'SelectSegments?': "No", 'GiveOffers?' : "No Action",'LoanCount': 922},
+        {Segments: "Option 2 Seg 6", 'SelectSegments?': "Yes", 'GiveOffers?' : "Extension 6M",'LoanCount': 770},
+
+    ]);
+
+    const [columnDefs] = useState([
+        { field: 'Segments' },
+        { field: 'LoanCount' },
+        { field: 'SelectSegments?' },
+        { field: 'GiveOffers?' },
+
+
+    ])
+
+    return (
+        <div className="ag-theme-alpine" style={{height: 180, width: 1000}}>
+            <AgGridReact
+                rowData={rowData}
+                columnDefs={columnDefs}>
+            </AgGridReact>
+        </div>
+    );
 }
 
-function SegmentsecondView() {
-    const [scoreFilter, setScoreFilter] = useState(newPositiveAttributeFilter(Md.InternalscoreBins, { uris: ["601-700"] }));
-    const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.Loanstartyear, { uris: ["2019"] }));
-    const [loantermFilter, setLoantermFilter] = useState(newPositiveAttributeFilter(Md.LoantermBins, { uris: ["0-70","71-80","81-90"] }));
 
-    // currentbalance, installment amount, loanterm, numberofaccounts, max dayspastdur6m,
-
-    function onDrillHandler(event) {
-        // handle drill
-    }
-
-
-  return (
-    <div className="s-attribute-filter">
-            <AttributeFilterButton filter={scoreFilter} onApply={setScoreFilter} />
-            <AttributeFilterButton filter={typeFilter} onApply={setTypeFilter} />
-            <AttributeFilterButton filter={loantermFilter} onApply={setLoantermFilter} />
-
-    <div style={style}>
-    <PivotTable
-        rows={[Md.Loannum_1,
-            Md.Custinternalunderwritingscore_1,
-            Md.Loanterm,
-            Md.MaxDpdLast6m,
-            Md.TotalDelqLast6m,
-            Md.LoanStartMonthYear
-        ]}
-        onDrill={onDrillHandler}
-        filters={scoreFilter ? [scoreFilter,typeFilter,loantermFilter] : []}
-    />
-</div>
-</div>
-
-  );
-}
-
-function SegmentthirdView() {
-    const [scoreFilter, setScoreFilter] = useState(newPositiveAttributeFilter(Md.InternalscoreBins, { uris: ["501-600"] }));
-    const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.Loanstartyear, { uris: ["2019"] }));
-    const [loantermFilter, setLoantermFilter] = useState(newPositiveAttributeFilter(Md.LoantermBins, { uris: ["0-70","71-80","81-90"] }));
-    const [loanmonthFilter, setLoanmonthFilter] = useState(newNegativeAttributeFilter(Md.Loanstartmonth, { uris: [] }));
-    // currentbalance, installment amount, loanterm, numberofaccounts, max dayspastdur6m,
-
-    function onDrillHandler(event) {
-        // handle drill
-    }
-
-
-  return (
-    <div className="s-attribute-filter">
-            <AttributeFilterButton filter={scoreFilter} onApply={setScoreFilter} />
-            <AttributeFilterButton filter={typeFilter} onApply={setTypeFilter} />
-            <AttributeFilterButton filter={loantermFilter} onApply={setLoantermFilter} />
-            <AttributeFilterButton filter={loanmonthFilter} onApply={setLoanmonthFilter} />
-
-
-    <div style={style}>
-    <PivotTable
-        rows={[Md.Loannum_1,
-            Md.Custinternalunderwritingscore_1,
-            Md.Loanterm,
-            Md.MaxDpdLast6m,
-            Md.TotalDelqLast6m,
-            Md.LoanStartMonthYear
-        ]}
-        onDrill={onDrillHandler}
-        filters={scoreFilter ? [scoreFilter,typeFilter,loantermFilter,loanmonthFilter] : []}
-    />
-</div>
-</div>
-
-  );
-}
 
 
 const Strategies = () => {
@@ -135,20 +71,12 @@ const Strategies = () => {
   return (
     <Page>
 
-      <h2>Strategy 1</h2>
-      <SegmentthirdView />
+      <h2>Strategy</h2>
+
+      <Strategy />
+
       <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
-      </NavLink>
-      <h2>Strategy 2</h2>
-      <SegmentsecondView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
-      </NavLink>
-      <h2>Strategy 3</h2>
-      <SegmentfirstView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
+                    <Button><h3>Send Offers</h3></Button>
       </NavLink>
 
     </Page>

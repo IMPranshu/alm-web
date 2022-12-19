@@ -19,6 +19,7 @@ import styles from "./AppRouter.module.scss";
 import { useAuth } from "../contexts/Auth";
 import { AuthStatus } from "../contexts/Auth/state";
 import Options from "./Options";
+import Dashboard from "./Dashboard";
 
 const RedirectIfNotLoggedIn = () => {
   const auth = useAuth();
@@ -34,7 +35,8 @@ const AppRouter = () => {
       <Router>
         {/* WorkspaceProvider depends on Router so it must be nested */}
         <WorkspaceProvider>
-          <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Dashboard} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/segments" component={Segments} />
           <Route exact path="/options" component={Options} />
           <Route exact path="/strategies" component={Strategies} />

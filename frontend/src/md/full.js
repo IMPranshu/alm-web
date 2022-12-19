@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-/* THIS FILE WAS AUTO-GENERATED USING CATALOG EXPORTER; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2022-12-18T17:05:16.557Z; */
+/* THIS FILE WAS AUTO-GENERATED USING CATALOG EXPORTER; YOU SHOULD NOT EDIT THIS FILE; GENERATE TIME: 2022-12-19T14:13:53.230Z; */
 // @ts-ignore ignore unused imports here if they happen (e.g. when there is no measure in the workspace)
 import { newAttribute, newMeasure, idRef } from "@gooddata/sdk-model";
 /**
@@ -10471,17 +10471,17 @@ export const Dashboards = {
   ,
   Segment: "a0eb7a27-ebdd-4465-98e7-2233d74202c8"
   /**
-   * Dashboard Title: Segment-1
-   * Dashboard ID: 6fdf2ee2-afd4-4255-aead-e7ff93e1fcd0
-   */
-  ,
-  Segment1: "6fdf2ee2-afd4-4255-aead-e7ff93e1fcd0"
-  /**
    * Dashboard Title: SegmentsDashboard
    * Dashboard ID: f8303e55-334a-4fc7-a97a-35a248e4794e
    */
   ,
   SegmentsDashboard: "f8303e55-334a-4fc7-a97a-35a248e4794e"
+  /**
+   * Dashboard Title: Segment-1
+   * Dashboard ID: 6fdf2ee2-afd4-4255-aead-e7ff93e1fcd0
+   */
+  ,
+  Segment1: "6fdf2ee2-afd4-4255-aead-e7ff93e1fcd0"
   /**
    * Dashboard Title: Segment-2
    * Dashboard ID: c025f92f-5e25-4253-a587-d12dbd29e9a5

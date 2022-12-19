@@ -42,7 +42,7 @@ function SegmentfirstView() {
     <div style={{height: 600}}>
 
     <Dashboard
-      dashboard={Md.Dashboards.Segment}
+      dashboard={Md.Dashboards.Segment1}
        />
     {/* <PivotTable
         rows={[Md.Loannum_1,
@@ -81,7 +81,7 @@ function SegmentsecondView() {
 
             <div style={{height: 600}}>
     <Dashboard
-      dashboard={Md.Dashboards.Segment}
+      dashboard={Md.Dashboards.Segment2}
        />
     {/* <PivotTable
         rows={[Md.Loannum_1,
@@ -121,7 +121,7 @@ function SegmentthirdView() {
 
     <div style={{height: 600}}>
     <Dashboard
-      dashboard={Md.Dashboards.Segment}
+      dashboard={Md.Dashboards.Segment3}
        />
     {/* <PivotTable
         rows={[Md.Loannum_1,
@@ -141,25 +141,25 @@ function SegmentthirdView() {
 }
 
 
-const Strategies = () => {
+const Segments = () => {
 
   return (
     <Page>
 
-      <h2>Segment 1(High Risk)</h2>
-      <SegmentthirdView />
+      <h2>(High Risk)</h2>
+      <SegmentfirstView />
       <NavLink to={"/options"} >
                     <Button><h3>Add to an Option</h3></Button>
       </NavLink>
 
 
-      <h2>Segment 2(Medium Risk)</h2>
+      <h2>(Medium Risk)</h2>
       <SegmentsecondView />
       <NavLink to={"/options"} >
                     <Button><h3>Add to an Option</h3></Button>
       </NavLink>
-      <h2>Segment 3(Low Risk)</h2>
-      <SegmentfirstView />
+      <h2>(Low Risk)</h2>
+      <SegmentthirdView />
       <NavLink to={"/options"} >
                     <Button><h3>Add to an Option</h3></Button>
       </NavLink>
@@ -168,4 +168,4 @@ const Strategies = () => {
   );
 };
 
-export default Strategies;
+export default Segments;

@@ -9,20 +9,20 @@ import { AttributeFilterButton } from "@gooddata/sdk-ui-filters";
 
 
 
-
 import * as Md from "../md/full";
 
 
 const style = { height: 400 };
 
 function PivotView() {
-    const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.LoanStartMonthYear, { uris: ["April-2022"] }));
+  const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.LoanStartMonthYear, { uris: ["April-2022"] }));
+const [loantermFilter, setLoantermFilter] = useState(newPositiveAttributeFilter(Md.LoantermBins, { uris: ["0-70","71-80","81-90"] }));
+
     // const [scoreFilter, setScoreFilter] = useState(newNegativeAttributeFilter(Md.InternalscoreBins, { uris: [] }));
     // const [delqFilter, setDelqFilter] = useState(newNegativeAttributeFilter(Md.TotalDelqLast6m, { uris: [] }));
     // const [maxdpdFilter, setMaxdpdFilter] = useState(newNegativeAttributeFilter(Md.MaxDpdLast6mBins, { uris: [] }));
     // const [balFilter, setBalFilter] = useState(newNegativeAttributeFilter(Md.CurrentbalanceBins, { uris: [] }));
     // const [instamtFilter, setInstamtFilter] = useState(newNegativeAttributeFilter(Md.InstallmentamountBins, { uris: [] }));
-    const [loantermFilter, setLoantermFilter] = useState(newPositiveAttributeFilter(Md.LoantermBins, { uris: ["0-70","71-80","81-90"] }));
     // const [numofaccFilter, setNumofaccFilter] = useState(newNegativeAttributeFilter(Md.NumberofaccountsBins, { uris: [] }));
 
 

@@ -7,13 +7,21 @@ import styles from "./Header.module.scss";
 const Links = () => {
   return (
     <>
-      <NavLink
+    <NavLink
         to={"/"}
         className={styles.Link}
         activeClassName={styles.LinkActive}
         exact
       >
-        Home
+        Dashboard
+      </NavLink>
+      <NavLink
+        to={"/home"}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+        exact
+      >
+        Population
       </NavLink>
       <NavLink
         to={"/segments"}
