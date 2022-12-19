@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "@gooddata/sdk-ui-dashboard/styles/css/main.css";
 import Page from "../components/Page";
 import {Export} from "./Export.js"
@@ -14,6 +14,7 @@ import { AttributeFilterButton } from "@gooddata/sdk-ui-filters";
 import * as Md from "../md/full";
 import Button from "../components/controls/Button";
 import { NavLink } from "react-router-dom";
+import { InsightView } from "@gooddata/sdk-ui-ext";
 
 
 const style = { height: 400 };
@@ -91,68 +92,51 @@ function SegmentsecondView() {
   );
 }
 
-function SegmentthirdView() {
-    const [scoreFilter, setScoreFilter] = useState(newPositiveAttributeFilter(Md.InternalscoreBins, { uris: ["501-600"] }));
-    const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.Loanstartyear, { uris: ["2019"] }));
-    const [loantermFilter, setLoantermFilter] = useState(newPositiveAttributeFilter(Md.LoantermBins, { uris: ["0-70","71-80","81-90"] }));
-    const [loanmonthFilter, setLoanmonthFilter] = useState(newNegativeAttributeFilter(Md.Loanstartmonth, { uris: [] }));
-    // currentbalance, installment amount, loanterm, numberofaccounts, max dayspastdur6m,
-
-    function onDrillHandler(event) {
-        // handle drill
-    }
-
+function BacktestInsightView() {
 
   return (
-    <div className="s-attribute-filter">
-            <AttributeFilterButton filter={scoreFilter} onApply={setScoreFilter} />
-            <AttributeFilterButton filter={typeFilter} onApply={setTypeFilter} />
-            <AttributeFilterButton filter={loantermFilter} onApply={setLoantermFilter} />
-            <AttributeFilterButton filter={loanmonthFilter} onApply={setLoanmonthFilter} />
 
 
     <div style={style}>
-    <PivotTable
-        rows={[Md.Loannum_1,
-            Md.Custinternalunderwritingscore_1,
-            Md.Loanterm,
-            Md.MaxDpdLast6m,
-            Md.TotalDelqLast6m,
-            Md.LoanStartMonthYear
-        ]}
-        onDrill={onDrillHandler}
-        filters={scoreFilter ? [scoreFilter,typeFilter,loantermFilter,loanmonthFilter] : []}
+    <InsightView
+        insight={Md.Insights.Backtest}
+
     />
 </div>
-</div>
+
 
   );
 }
 
+function RedirectOfferScreen() {
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        // 👇️ redirects to an external URL
+        window.location.replace('https://gd.dasceq.link/');
+      }, 3000);
 
-const Strategies = () => {
+      return () => clearTimeout(timeout);
+    }, []);
+
+    return <>Will redirect in 3 seconds...</>;
+  }
+
+
+
+const Offers = () => {
 
   return (
     <Page>
 
-      <h2>Strategy 1</h2>
-      <SegmentthirdView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
-      </NavLink>
-      <h2>Strategy 2</h2>
-      <SegmentsecondView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
-      </NavLink>
-      <h2>Strategy 3</h2>
-      <SegmentfirstView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
-      </NavLink>
+      <h1>Offers</h1>
+      <a href="https://gd.dasceq.link/" target="_blank" rel="noopener noreferrer">
+  <Button>Send Offers</Button>
+</a>
+
+
 
     </Page>
   );
 };
 
-export default Strategies;
+export default Offers;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ExportDialog } from "@gooddata/sdk-ui-kit";
+import { NavLink } from "react-router-dom";
 
 const style = { height: 850 };
 const buttonsContainerStyle = { marginTop: 15 };
@@ -113,7 +114,7 @@ export const Export = ({ children, filters }) => {
             {children(onExportReady)}
             <div style={buttonsContainerStyle}>
                 <div style={loadingStyle}>{exporting ? <span>Exporting...</span> : null}</div>
-                <Button onClick={exportToCSV} disabled={exporting}>
+                {/* <Button onClick={exportToCSV} disabled={exporting}>
                     Export CSV
                 </Button>
                 <Button onClick={exportToXLSX} disabled={exporting}>
@@ -124,7 +125,13 @@ export const Export = ({ children, filters }) => {
                 </Button>
                 <Button onClick={openExportDialog} disabled={exporting}>
                     Export using Export Dialog
-                </Button>
+                </Button> */}
+
+                <NavLink to={"/segments"} >
+                    <Button>Next</Button>
+
+                </NavLink>
+
             </div>
             {errorMessage ? <div style={errorStyle}>{errorMessage}</div> : null}
             {showExportDialog ? (

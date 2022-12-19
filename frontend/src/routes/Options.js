@@ -8,6 +8,11 @@ import { PivotTable } from "@gooddata/sdk-ui-pivot";
 import { modifyMeasure, newNegativeAttributeFilter,newPositiveAttributeFilter } from "@gooddata/sdk-model";
 import { AttributeFilterButton } from "@gooddata/sdk-ui-filters";
 
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
 
 
 
@@ -80,7 +85,8 @@ function SegmentsecondView() {
             Md.Loanterm,
             Md.MaxDpdLast6m,
             Md.TotalDelqLast6m,
-            Md.LoanStartMonthYear
+            Md.LoanStartMonthYear,
+
         ]}
         onDrill={onDrillHandler}
         filters={scoreFilter ? [scoreFilter,typeFilter,loantermFilter] : []}
@@ -92,10 +98,10 @@ function SegmentsecondView() {
 }
 
 function SegmentthirdView() {
-    const [scoreFilter, setScoreFilter] = useState(newPositiveAttributeFilter(Md.InternalscoreBins, { uris: ["501-600"] }));
-    const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.Loanstartyear, { uris: ["2019"] }));
+    const [scoreFilter, setScoreFilter] = useState(newNegativeAttributeFilter(Md.MaxDpdLast6mBins, { uris: [] }));
+    const [typeFilter, setTypeFilter] = useState(newPositiveAttributeFilter(Md.LoanStartMonthYear, { uris: ["April-2022"] }));
     const [loantermFilter, setLoantermFilter] = useState(newPositiveAttributeFilter(Md.LoantermBins, { uris: ["0-70","71-80","81-90"] }));
-    const [loanmonthFilter, setLoanmonthFilter] = useState(newNegativeAttributeFilter(Md.Loanstartmonth, { uris: [] }));
+
     // currentbalance, installment amount, loanterm, numberofaccounts, max dayspastdur6m,
 
     function onDrillHandler(event) {
@@ -108,8 +114,6 @@ function SegmentthirdView() {
             <AttributeFilterButton filter={scoreFilter} onApply={setScoreFilter} />
             <AttributeFilterButton filter={typeFilter} onApply={setTypeFilter} />
             <AttributeFilterButton filter={loantermFilter} onApply={setLoantermFilter} />
-            <AttributeFilterButton filter={loanmonthFilter} onApply={setLoanmonthFilter} />
-
 
     <div style={style}>
     <PivotTable
@@ -121,7 +125,7 @@ function SegmentthirdView() {
             Md.LoanStartMonthYear
         ]}
         onDrill={onDrillHandler}
-        filters={scoreFilter ? [scoreFilter,typeFilter,loantermFilter,loanmonthFilter] : []}
+        filters={scoreFilter ? [scoreFilter,typeFilter,loantermFilter] : []}
     />
 </div>
 </div>
@@ -129,30 +133,89 @@ function SegmentthirdView() {
   );
 }
 
+function FirstOptionsView() {
 
-const Strategies = () => {
+    const [rowData] = useState([
+        {Segments: "Seg1", RiskAssociated: "High", Variable1 : "S1,S2&S3",Variable2:"Inst. > $500",'No of Loans': 2200},
+        {Segments: "Seg2", RiskAssociated: "Low", Variable1 : "S4&S5",Variable2:"Inst. < $500",'No of Loans': 40},
+        {Segments: "Seg3", RiskAssociated: "Medium", Variable1 : "S1,S2&S3",Variable2:"Inst. > $1000",'No of Loans': 110},
+
+    ]);
+
+    const [columnDefs] = useState([
+        { field: 'Segments' },
+        { field: 'RiskAssociated' },
+        { field: 'Variable1' },
+        { field: 'Variable2' },
+        { field: 'No of Loans' },
+    ])
+
+    return (
+        <div className="ag-theme-alpine" style={{height: 180, width: 1000}}>
+            <AgGridReact
+                rowData={rowData}
+                columnDefs={columnDefs}>
+            </AgGridReact>
+        </div>
+    );
+}
+
+    function SecondOptionsView() {
+
+        const [rowData] = useState([
+
+            {Segments: "Seg1", RiskAssociated: "High", Variable1 : "S4&S5",Variable2:"Inst. < $1000",'No of Loans': 330},
+            {Segments: "Seg2", RiskAssociated: "Medium", Variable1 : "S1,S2&S3",Variable2:"Inst. > $700",'No of Loans': 234},
+            {Segments: "Seg3", RiskAssociated: "Low", Variable1 : "S4&S5",Variable2:"Inst. < $500",'No of Loans': 556},
+            {Segments: "Seg4", RiskAssociated: "Medium", Variable1 : "S1,S2&S3",Variable2:"Inst. > $600",'No of Loans': 441},
+            {Segments: "Seg5", RiskAssociated: "No", Variable1 : "S4&S5",Variable2:"Inst. < $200",'No of Loans': 922},
+            {Segments: "Seg6", RiskAssociated: "High", Variable1 : "S1,S2&S3",Variable2:"Inst. > $1000",'No of Loans': 770},
+
+        ]);
+    
+        const [columnDefs] = useState([
+            { field: 'Segments' },
+            { field: 'RiskAssociated' },
+            { field: 'Variable1' },
+            { field: 'Variable2' },
+            { field: 'No of Loans' },
+        ])
+    
+        return (
+            <div className="ag-theme-alpine" style={{height: 300, width: 1000}}>
+                <AgGridReact
+                    rowData={rowData}
+                    columnDefs={columnDefs}>
+                </AgGridReact>
+            </div>
+        );
+    
+    
+    
+    
+      }
+
+
+
+
+
+const Options = () => {
 
   return (
     <Page>
 
-      <h2>Strategy 1</h2>
-      <SegmentthirdView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
-      </NavLink>
-      <h2>Strategy 2</h2>
-      <SegmentsecondView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
-      </NavLink>
-      <h2>Strategy 3</h2>
-      <SegmentfirstView />
-      <NavLink to={"/offers"} >
-                    <Button><h3>Choose Offers</h3></Button>
+      <h2>Option 1</h2>
+      <FirstOptionsView />
+
+      <h2>Option 2</h2>
+      <SecondOptionsView />
+
+      <NavLink to={"/backtest"} >
+                    <Button><h3>Backtest</h3></Button>
       </NavLink>
 
     </Page>
   );
 };
 
-export default Strategies;
+export default Options;

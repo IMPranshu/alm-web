@@ -10,12 +10,15 @@ import Welcome from "./Welcome";
 import Home from "./Home";
 import Segments from "./Segments";
 import Strategies from "./Strategies";
+import Backtest from "./Backtest";
+import Offers from "./Offers";
 
 
 import styles from "./AppRouter.module.scss";
 
 import { useAuth } from "../contexts/Auth";
 import { AuthStatus } from "../contexts/Auth/state";
+import Options from "./Options";
 
 const RedirectIfNotLoggedIn = () => {
   const auth = useAuth();
@@ -33,7 +36,10 @@ const AppRouter = () => {
         <WorkspaceProvider>
           <Route exact path="/" component={Home} />
           <Route exact path="/segments" component={Segments} />
+          <Route exact path="/options" component={Options} />
           <Route exact path="/strategies" component={Strategies} />
+          <Route exact path="/backtest" component={Backtest} />
+          <Route exact path="/offers" component={Offers} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/logout" component={Logout} />
           {/* <RedirectIfNotLoggedIn /> */}

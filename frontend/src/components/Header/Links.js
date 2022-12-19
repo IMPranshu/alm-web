@@ -21,7 +21,23 @@ const Links = () => {
         activeClassName={styles.LinkActive}
         exact
       >
-        Segment & Options
+        Segments
+      </NavLink>
+      <NavLink
+        to={"/options"}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+        exact
+      >
+        Options
+      </NavLink>
+      <NavLink
+        to={"/backtest"}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+        exact
+      >
+        Backtest
       </NavLink>
       <NavLink
         to={"/strategies"}
@@ -30,6 +46,15 @@ const Links = () => {
         exact
       >
         Strategies
+      </NavLink>
+
+      <NavLink
+        to={"/offers"}
+        className={styles.Link}
+        activeClassName={styles.LinkActive}
+        exact
+      >
+        Offers
       </NavLink>
 
     </>

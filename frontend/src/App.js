@@ -3,6 +3,7 @@ import { BackendProvider } from "@gooddata/sdk-ui";
 import AppRouter from "./routes/AppRouter";
 import { useAuth } from "./contexts/Auth";
 import { WorkspaceListProvider } from "./contexts/WorkspaceList";
+import SplashScreen from './components/SplashScreen';
 
 function App() {
     const { backend } = useAuth();
@@ -16,4 +17,4 @@ function App() {
     );
 }
 
-export default App;
+export default SplashScreen(App);
